@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { User } from './user.model';
 
 @Component({
@@ -11,6 +11,9 @@ import { User } from './user.model';
 export class UserComponent {
   user = input.required<User>();
   imagePath = computed(() => 'assets/users/' + this.user().avatar);
+  selectUser = output<User>();
 
-  onSelectUser() {}
+  onSelectUser() {
+    this.selectUser.emit(this.user());
+  }
 }
