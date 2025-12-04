@@ -1,1 +1,18 @@
-<p>this is {{ user().name }} 's tasks</p>
+@if (isAddingTask) {
+    <app-new-task [userId]="user().id" (close)="stopAddingTask()"></app-new-task>
+}
+<section id="tasks">
+    <header>
+        <h2>{{ user().name }}</h2>
+        <menu>
+            <button (click)="startAddingTask()">Add Task</button>
+        </menu>
+    </header>
+    <ul>
+        @for (task of tasks(); track task.id){
+            <li>
+                <app-task [task]="task"></app-task>
+            </li>
+        }
+    </ul>
+</section>

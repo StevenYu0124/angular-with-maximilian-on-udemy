@@ -3,7 +3,8 @@ import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
 import { DUMMY_USERS } from './user/dummy-users';
 import { User } from './user/user.model';
-import { TasksComponent } from "./tasks/tasks.component";
+import { TasksComponent} from "./tasks/tasks.component";
+import { type Task } from './tasks/task/task.model';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +15,11 @@ import { TasksComponent } from "./tasks/tasks.component";
 })
 export class AppComponent {
   users = DUMMY_USERS;
-  user = DUMMY_USERS[0];
+  tasks: Task[] = [];
+  selectedUser? : User;
+  
 
   onUserSelected(user: User) {
-    this.user = user;
+    this.selectedUser = user;
   }
 }
